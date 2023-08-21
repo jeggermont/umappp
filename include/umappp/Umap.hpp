@@ -590,7 +590,7 @@ public:
 
 #ifndef UMAPPP_CUSTOM_PARALLEL
         #pragma omp parallel for num_threads(rparams.nthreads)
-        for (size_t i = 0; i < N; ++i) {
+        for (ptrdiff_t i = 0; i < N; ++i) {
 #else
         UMAPPP_CUSTOM_PARALLEL(N, [&](size_t first, size_t last) -> void {
         for (size_t i = first; i < last; ++i) {
@@ -629,7 +629,7 @@ public:
      */
     template<typename Input = Float>
     Status initialize(int ndim_in, size_t nobs, const Input* input, int ndim_out, Float* embedding) { 
-        knncolle::VpTreeEuclidean<> searcher(ndim_in, nobs, input); 
+        knncolle::VpTreeEuclidean<int, Float, Float,Float> searcher(ndim_in, nobs, input); 
         return initialize(&searcher, ndim_out, embedding);
     }
 #endif

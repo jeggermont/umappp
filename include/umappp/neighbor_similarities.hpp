@@ -28,7 +28,7 @@ void neighbor_similarities(
         std::vector<Float> non_zero_distances;
         
         #pragma omp for
-        for (size_t i = 0; i < x.size(); ++i) {
+        for (ptrdiff_t i = 0; i < x.size(); ++i) {
             auto& all_neighbors = x[i];
             const int n_neighbors = all_neighbors.size();
 
